@@ -28,7 +28,7 @@ const cssCommon = {
     textH1: "text-6xl font-bold mb-4",
     textH2: "text-2xl font-bold mb-4",
     textH3: "text-l",
-    textBase: " whitespace-pre-wrap space-y-4",
+    textBase: "text-xl whitespace-pre-wrap space-y-4",
     textBaseBig: "text-xl whitespace-pre-wrap",
     textLink: "text-orange-500 hover:text-green-500 cursor-pointer",
 }
@@ -57,7 +57,7 @@ export default function RockPageClient() {
 
             <HeroRock cssCommon={cssCommon} cssSpecific={cssHeroSection} handleSubmitEmail={handleSubmitEmail}
                 introText={(
-                    <p className={cssCommon.textBaseBig}>Be the first to hear when your favorite bands rock your town.  Just choose which artists you care about and your notification settings.  We'll handle the rest.</p>
+                    <p className={cssCommon.textBaseBig}>Be the first to hear when your favorite bands rock your town.  Just choose which artists you care about and how loud you want us to be.  We'll handle the rest.</p>
                 )}
             />
             <ThanksPopup openSignal={thanksPopupSignal}></ThanksPopup>
@@ -86,7 +86,7 @@ export default function RockPageClient() {
                     leftContent={(
                         <div className="text-left mt-16">
                             <p className={cssCommon.textH2}>The Set List</p>
-                            <ul className="space-y-2 list-disc whitespace-pre-wrap">
+                            <ul className={"space-y-2 list-disc whitespace-pre-wrap " + cssCommon.textBase}>
                             {/* <ul className="space-y-2"> */}
                                 <li><OrangeCheck/>Any artist?  Even without a record deal?  Check!</li>
                                 <li><OrangeCheck/>Music festivals?   Check!</li>
@@ -113,6 +113,7 @@ export default function RockPageClient() {
                 />
             </section>
 
+            <AnalyticObserver name='rock-visit-faq' />
             <section>
                 <div className={bgNeutral}>
                     <CenterMaxWidth minXPad={8}>
@@ -125,9 +126,6 @@ export default function RockPageClient() {
                 </div>
             </section>
 
-
-            <AnalyticObserver name='rock-visit-faq' />
-            {/* <FaqBird /> */}
             <div className='py-8'></div>
 
             <FloatingFooter showBelowPageYOffset={400} cssOverride={bgDark}>
@@ -179,7 +177,7 @@ function quoteBox() {
                 rightContent={(
                     <div className='flex items-center h-full'>
                         <div className={cssCommon.textBase}>
-                            <p>One of my favorite bands, <a className={cssCommon.textLink} href="https://www.youtube.com/watch?v=7iKjSCTxke8" target="_blank">Bloodywood</a>, came all the way from India to play a show in my city and i MISSED it 'cause i didn't know.</p>
+                            <p>One of my favorite bands, <a className={cssCommon.textLink} href="https://www.youtube.com/watch?v=7iKjSCTxke8" target="_blank">Bloodywood</a>, came all the way from India to play a show while i was visiting Seattle and i MISSED it 'cause i didn't know.</p>
                             <p>Other sites were supposed to be keeping me in the loop, but let me down.  So i built this myself.  Hopefully it can help you too</p>
                         </div>
                     </div>

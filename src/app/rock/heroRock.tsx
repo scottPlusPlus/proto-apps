@@ -38,7 +38,7 @@ export default function HeroRock(props: Props) {
                             <div className="py-16 px-16">
                                 <div data-aos="fade-up" data-aos-delay="200">
                                     <div className={cssTextAlignment}>
-                                        <h1 className={props.cssCommon.textH1}>Rock Alert 🤘 🤘 </h1>
+                                        <h1 className={props.cssCommon.textH1}>Rock Alert 🤘</h1>
                                     </div>
                                     <div className={cssTextAlignment}>
                                         {props.introText}
