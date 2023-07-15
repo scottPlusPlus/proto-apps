@@ -40,7 +40,7 @@ export default function RockPageClient() {
     function handleSubmitEmail(email: string): void {
         console.log("pageClient:  handle submitEmail");
         var ref = "ref=" + document.referrer;
-        submitEmail(email, ref);
+        submitEmail(email, ref, "rock");
         thanksPopupSignal.trigger();
     }
 

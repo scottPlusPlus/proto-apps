@@ -5,6 +5,7 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
+    console.log("handle submitAnalytics");
     const hopefullyIp = getIpAddressFromHeadersDict(req.headers);
     const data = {
         events: [
@@ -17,7 +18,7 @@ export default async function handler(
     };
     // console.log("data: " + JSON.stringify(data));
     res.status(200).json("ok");
-    const endpoint = "http://24.199.102.59:8080/api/submitAnalytics";
+    const endpoint = "http://24.199.102.59/api/submitAnalytics";
 
     const options = {
         method: "POST",

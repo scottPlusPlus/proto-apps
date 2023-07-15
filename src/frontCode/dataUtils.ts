@@ -1,6 +1,7 @@
 export async function submitEmail(
     email: string,
-    data: string
+    data: string,
+    domain: string,
 ): Promise<void> {
     if (skipSendingData()){
         return;
@@ -8,6 +9,7 @@ export async function submitEmail(
     const bodyData = {
         email: email,
         data: data,
+        domain: domain
     };
     const endpoint = "/api/submitEmail";
     await sendJson(endpoint, JSON.stringify(bodyData));
@@ -29,6 +31,7 @@ export async function submitAnalytics(
 }
 
 async function sendJson(endpoint: string, jsonString: string): Promise<void> {
+    console.log("send: " + endpoint);
     const options = {
         method: "POST",
         headers: {

@@ -8,10 +8,10 @@ export default async function handler(
 
     const data = {
         email: req.body.email,
-        domain: "birdSong",
+        domain: req.body.domain,
         data: req.body.data,
     };
-    const endpoint = "http://24.199.102.59:8080/api/submitEmail";
+    const endpoint = "http://24.199.102.59/api/submitEmail";
 
     // Form the request for sending data to the server.
     const options = {
