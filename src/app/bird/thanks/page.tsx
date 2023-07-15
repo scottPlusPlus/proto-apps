@@ -16,7 +16,7 @@ export default function BirdThanksPage() {
     function handleSubmitEmail(email: string): void {
         console.log("pageClient:  handle submitEmail");
         var ref = "ref=" + document.referrer;
-        submitEmail(email, ref);
+        submitEmail(email, ref, "bird");
         thanksPopupSignal.trigger();
     }
 

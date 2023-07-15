@@ -2,11 +2,10 @@
 
 import AnalyticObserver from '@/src/components/ClientAnalyticObserver'
 import FloatingFooter from '@/src/agnostic/components/FloatingFooter'
-import ClientSubmitEmailForm from '@/src/components/ClientSubmitEmailForm'
 import HeroRock from './heroRock'
 import { ButtonProps } from '@/src/frontCode/cssCommon'
 import AltColumn from './AltColumn'
-import { submitAnalytics, submitEmail } from "@/frontCode/dataUtils";
+import { submitEmail } from "@/frontCode/dataUtils";
 import ImgScott from '@/public/images/rock/scott_photo.jpg';
 import FeatureImageBW from '@/public/images/rock/fi_control.png';
 import FeatureImageCoffee from '@/public/images/rock/fi_coffee.png';
