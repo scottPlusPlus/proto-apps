@@ -1,8 +1,4 @@
-"use client"
-
-import { useEffect } from "react";
 import HeroImage from '@/public/images//rock/rockHero.jpg'
-import { submitAnalytics, submitEmail } from "@/frontCode/dataUtils";
 import EmailFormRock from "./emailFormRock";
 import { CssPropsCommon } from "@/src/frontCode/cssCommon";
 
@@ -18,12 +14,6 @@ type CssPropsSpecific = {
 }
 
 export default function HeroRock(props: Props) {
-
-    useEffect(() => {
-        const ref = "ref=" + document.referrer;
-        submitAnalytics("rock-visit-top", ref);
-    }, []);
-
 
     const cssTextAlignment = "flex justify-center lg:justify-start";
 

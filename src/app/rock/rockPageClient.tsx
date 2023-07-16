@@ -5,7 +5,7 @@ import FloatingFooter from '@/src/agnostic/components/FloatingFooter'
 import HeroRock from './heroRock'
 import { ButtonProps } from '@/src/frontCode/cssCommon'
 import AltColumn from './AltColumn'
-import { submitEmail } from "@/frontCode/dataUtils";
+import { submitAnalytics, submitEmail } from "@/frontCode/dataUtils";
 import ImgScott from '@/public/images/rock/scott_photo.jpg';
 import FeatureImageBW from '@/public/images/rock/fi_control.png';
 import FeatureImageCoffee from '@/public/images/rock/fi_coffee.png';
@@ -19,6 +19,7 @@ import { CenterMaxWidth } from '@/src/agnostic/components/CenterMaxWidth'
 import { Layout2ColMinLeft } from '@/src/agnostic/components/Layout2ColMinLeft'
 import FaqRock from './FaqRock'
 import CheckMarkSVG from '@/src/agnostic/components/CheckMarkSVG'
+import { useEffect } from 'react'
 
 
 const cssCommon = {
@@ -38,10 +39,16 @@ export default function RockPageClient() {
 
     function handleSubmitEmail(email: string): void {
         console.log("pageClient:  handle submitEmail");
-        var ref = "ref=" + document.referrer;
-        submitEmail(email, ref, "rock");
+        const url = document.URL;
+        submitEmail(email, url, "rock");
         thanksPopupSignal.trigger();
     }
+
+    useEffect(() => {
+        const url = document.URL;
+        submitAnalytics("rock-visit-top", url);
+    }, []);
+
 
     const bgDark = "bg-gray-800";
     const bgDark2 = "bg-zinc-800";
