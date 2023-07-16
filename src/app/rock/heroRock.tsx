@@ -26,7 +26,7 @@ export default function HeroRock(props: Props) {
                     <div className="mt-auto mb-auto">
                         <div className="ml-auto mr-auto">
                             <div className="py-16 px-16">
-                                <div data-aos="fade-up" data-aos-delay="200">
+                                {/* <div data-aos="fade-up" data-aos-delay="200"> */}
                                     <div className={cssTextAlignment}>
                                         <h1 className={props.cssCommon.textH1}>Rock Alert 🤘</h1>
                                     </div>
@@ -36,7 +36,7 @@ export default function HeroRock(props: Props) {
                                     <div className={cssTextAlignment + " pt-8"}>
                                         <EmailFormRock onSubmitEmail={props.handleSubmitEmail} cssCommon={props.cssCommon}></EmailFormRock>
                                     </div>
-                                </div>
+                                {/* </div> */}
                             </div>
                         </div>
                     </div>

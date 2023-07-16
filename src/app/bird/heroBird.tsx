@@ -1,13 +1,9 @@
 "use client"
 
-import { useEffect } from "react";
 import Image from 'next/image'
 import Illustration from '@/public/images/hero-illustration.svg'
 import HeroImage from '@/public/images/twitter_hero.png'
-import EmailForm from '@/components/emailForm'
-import { submitAnalytics, submitEmail } from "@/frontCode/dataUtils";
 import { ButtonProps, CssPropsCommon } from "@/src/frontCode/cssCommon";
-import { BirdActionButton } from "./BirdActionButton";
 
 type Props = {
   cssCommon:CssPropsCommon,
@@ -15,12 +11,6 @@ type Props = {
 }
 
 export default function HeroBird(props:Props) {
-
-  useEffect(() => {
-    const ref = "ref=" + document.referrer;
-    submitAnalytics("birdsong-visit-top", ref);
-  }, []);
-
 
   return (
     <section className="relative">

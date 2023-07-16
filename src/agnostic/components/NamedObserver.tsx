@@ -1,12 +1,16 @@
 "use client"
 
-import { submitAnalytics } from "../frontCode/dataUtils"
 import Observer from "./Observer"
 
-export default function AnalyticObserver(props: { name: string}) {
+type Props = {
+    name:string,
+    onObserve:(ar0:string)=>void
+}
+
+export default function AnalyticObserver(props: Props) {
     
     function onObserve():void {
-        submitAnalytics(props.name, "");
+        props.onObserve(props.name);
     }
     
     return (

@@ -3,20 +3,27 @@
 import { CenterMaxWidth } from "@/src/agnostic/components/CenterMaxWidth";
 import { CssBird } from "../cssBird";
 import EmailFormBird from "../emailFormBird";
-import { submitEmail } from "@/src/frontCode/dataUtils";
+import { submitAnalytics, submitEmail, urlWithRef } from "@/src/frontCode/dataUtils";
 import { ThanksPopup } from "@/src/agnostic/components/ThanksPopup";
 import { Signal } from "@/src/agnostic/utils/Signal";
+import { useEffect } from "react";
 
 const cssBird = CssBird;
 
 export default function BirdThanksPage() {
 
     const thanksPopupSignal = new Signal();
+    
+    var anaData = "";
+    useEffect(() => {
+        anaData = urlWithRef(document);
+        submitAnalytics("rock-visit-thanks", anaData, "bird",  );
+    }, []);
 
+    
     function handleSubmitEmail(email: string): void {
-        console.log("pageClient:  handle submitEmail");
-        var ref = "ref=" + document.referrer;
-        submitEmail(email, ref, "bird");
+        //console.log("pageClient:  handle submitEmail");
+        submitEmail(email, anaData, "bird");
         thanksPopupSignal.trigger();
     }
 

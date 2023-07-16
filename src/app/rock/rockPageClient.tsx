@@ -1,11 +1,10 @@
 "use client"
 
-import AnalyticObserver from '@/src/components/ClientAnalyticObserver'
 import FloatingFooter from '@/src/agnostic/components/FloatingFooter'
 import HeroRock from './heroRock'
 import { ButtonProps } from '@/src/frontCode/cssCommon'
 import AltColumn from './AltColumn'
-import { submitAnalytics, submitEmail } from "@/frontCode/dataUtils";
+import { submitAnalytics, submitEmail, urlWithRef } from "@/frontCode/dataUtils";
 import ImgScott from '@/public/images/rock/scott_photo.jpg';
 import FeatureImageBW from '@/public/images/rock/fi_control.png';
 import FeatureImageCoffee from '@/public/images/rock/fi_coffee.png';
@@ -20,6 +19,7 @@ import { Layout2ColMinLeft } from '@/src/agnostic/components/Layout2ColMinLeft'
 import FaqRock from './FaqRock'
 import CheckMarkSVG from '@/src/agnostic/components/CheckMarkSVG'
 import { useEffect } from 'react'
+import NamedObserver from '@/src/agnostic/components/NamedObserver'
 
 
 const cssCommon = {
@@ -37,17 +37,20 @@ export default function RockPageClient() {
 
     const thanksPopupSignal = new Signal();
 
+    var anaData = "";
+    useEffect(() => {
+        anaData = urlWithRef(document);
+        submitAnalytics("rock-visit-top", anaData, "rock",  );
+    }, []);
+
     function handleSubmitEmail(email: string): void {
-        console.log("pageClient:  handle submitEmail");
-        const url = document.URL;
-        submitEmail(email, url, "rock");
+        submitEmail(email, anaData, "rock");
         thanksPopupSignal.trigger();
     }
 
-    useEffect(() => {
-        const url = document.URL;
-        submitAnalytics("rock-visit-top", url);
-    }, []);
+    function handleSubmitAnalytics(name:string){
+        submitAnalytics(name, anaData, "rock");
+    }
 
 
     const bgDark = "bg-gray-800";
@@ -119,7 +122,7 @@ export default function RockPageClient() {
                 />
             </section>
 
-            <AnalyticObserver name='rock-visit-faq' />
+            <NamedObserver name='rock-visit-faq' onObserve={handleSubmitAnalytics}/>
             <section>
                 <div className={bgNeutral}>
                     <CenterMaxWidth minXPad={8}>

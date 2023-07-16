@@ -1,6 +1,5 @@
 "use client"
 
-import AnalyticObserver from "@/src/components/ClientAnalyticObserver"
 import FloatingFooter from "@/src/agnostic/components/FloatingFooter"
 import { CssPropsCommon } from "@/src/frontCode/cssCommon"
 import Link from 'next/link';
@@ -18,6 +17,20 @@ type Props = {
 }
 
 export function PageClient(props: Props) {
+
+    var anaData = "";
+    useEffect(() => {
+        anaData = urlWithRef(document);
+        submitAnalytics("bird-visit-top", anaData, "bird");
+    }, []);
+
+    function handleAnaObserver(name:string){
+        submitAnalytics(name, anaData, "bird");
+    }
+
+
+
+
 
     const bgNeutral = "bg-neutral-200";
     // const cssTextAlignment = "flex justify-center lg:justify-start";
@@ -165,7 +178,7 @@ export function PageClient(props: Props) {
                     <CenterMaxWidth minXPad={8}>
                         <div className="px-32">
                             <p className={props.cssCommon.textH2 + " " + props.cssCommon.textDark}>
-                                lol I spent way too much time on this, and now I'm spending even MORE showing it off but: 
+                                lol I spent way too much time on this, and now I'm spending even MORE showing it off but:
                                 <b><ScrollTextComponent text=" the text highlights as you scroll down!  So cool!  Simple React component you can just drop in" bufferTop={-400} bufferBottom={-200} colorBefore="text-black" colorAfter="text-green-500"></ScrollTextComponent></b>.
                                 Happy to share if anyone wants
                             </p>
@@ -175,7 +188,7 @@ export function PageClient(props: Props) {
             </section>
 
 
-            <AnalyticObserver name='birdsong-visit-faq' />
+            <NamedObserver name='bird-visit-faq' onObserve={handleAnaObserver}/>
             <section>
                 {sectionFaq()}
             </section>
@@ -207,8 +220,11 @@ import CardWithIcon from "@/components/cardWithIcon"
 import BirdIcon1 from '@/public/images/icon_bird_1.png'
 import BirdIcon2 from '@/public/images/icon_bird_2.png'
 import BirdIcon3 from '@/public/images/icon_bird_3.png'
+import { submitAnalytics, urlWithRef } from "@/src/frontCode/dataUtils";
+import { useEffect } from "react";
+import NamedObserver from "@/src/agnostic/components/NamedObserver";
 
-export default function SectionFeatures(props:Props) {
+export default function SectionFeatures(props: Props) {
 
     const textCss = `${props.cssCommon.textBaseBig} ${props.cssCommon.textDark}`;
     return (
