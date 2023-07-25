@@ -3,7 +3,7 @@
 import FloatingFooter from "@/src/agnostic/components/FloatingFooter"
 import { CssPropsCommon } from "@/src/frontCode/cssCommon"
 import Link from 'next/link';
-import { BirdActionButton } from "./BirdActionButton"
+import { BirdActionButton } from "../bird/BirdActionButton"
 import ArrowWithHover from "@/src/agnostic/components/ArrowWithHover"
 import ScrollTextComponent from "@/src/agnostic/components/ScrollTextComponent"
 import { CenterMaxWidth } from "@/src/agnostic/components/CenterMaxWidth"
@@ -77,7 +77,7 @@ export function PageClient(props: Props) {
 
     function sectionFaq() {
         return (
-            <div className="max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-4">
                 <div className="pb-12 md:pb-20">
                     {/* Section header */}
                     <div className="pb-12" data-aos="fade-up" data-aos-delay="200">
@@ -131,15 +131,6 @@ export function PageClient(props: Props) {
                                 </>
                             </FaqCard>
 
-                            {/* Item */}
-                            {/* <FaqCard title="What is This?">
-                <>
-                  BirdSong is a third-party tool helping you be more effective and efficient connecting with people on Twitter.
-                  Connect your Twitter Lists, and our AI will find the tweets most worth your response.
-                  You can configure to send you a daily email with the most important tweets, or just visit our page to see your currently highlighted Tweets.
-                </>
-              </FaqCard> */}
-
                         </div>
                     </div>
                 </div>
@@ -154,7 +145,7 @@ export function PageClient(props: Props) {
             </section>
 
             <section>
-                <div className={`py-8 ${bgNeutral}`}>
+                <div className={`py-8 bg-white-100`}>
                     <CenterMaxWidth minXPad={8}>
                         <FadeUp>
                             <p className={props.cssCommon.textH2 + " " + props.cssCommon.textDark}>
@@ -172,7 +163,53 @@ export function PageClient(props: Props) {
                     <SectionFeatures cssCommon={props.cssCommon} />
                 </div>
             </section>
-            
+
+
+
+            <section>
+                <div className={`py-16 bg-white-100`}>
+                    <CenterMaxWidth minXPad={8}>
+                        <div className="px-32">
+                            <p className={props.cssCommon.textH2 + " " + props.cssCommon.textDark}>
+                                lol I spent way too much time on this, and now I'm spending even MORE showing it off but:
+                                <b><ScrollTextComponent text=" the text highlights as you scroll down!  So cool!  Simple React component you can just drop in" bufferTop={-400} bufferBottom={-200} colorBefore="text-black" colorAfter="text-blue-500"></ScrollTextComponent></b>.
+                                Brings a little more life to your landing page.
+                            </p>
+                        </div>
+                    </CenterMaxWidth>
+                </div>
+            </section>
+
+            <section>
+                <div className={`py-16 ${bgNeutral}`}>
+                    <CenterMaxWidth minXPad={8}>
+                        <div className="px-32">
+                            <p className={props.cssCommon.textH2 + " " + props.cssCommon.textDark}>
+                                lol I spent way too much time on this, and now I'm spending even MORE showing it off but:
+                                <b><ScrollTextComponent text=" the text highlights as you scroll down!  So cool!  Simple React component you can just drop in" bufferTop={-400} bufferBottom={-200} colorBefore="text-black" colorAfter="text-green-500"></ScrollTextComponent></b>.
+                                Brings a little more life to your landing page.
+                            </p>
+                        </div>
+                    </CenterMaxWidth>
+                </div>
+            </section>
+
+            <section>
+                <div className={`py-16 bg-white-100`}>
+                    <CenterMaxWidth minXPad={8}>
+                        <div className="px-32">
+                            <p className={props.cssCommon.textH2 + " " + props.cssCommon.textDark}>
+                                lol I spent way too much time on this, and now I'm spending even MORE showing it off but:
+                                <b><ScrollTextComponent text=" the text highlights as you scroll down!  So cool!  Simple React component you can just drop in" bufferTop={-400} bufferBottom={-200} colorBefore="text-black" colorAfter="text-purple-500"></ScrollTextComponent></b>.
+                                Brings a little more life to your landing page.
+                            </p>
+                        </div>
+                    </CenterMaxWidth>
+                </div>
+            </section>
+
+
+
             <NamedObserver name='bird-visit-faq' onObserve={handleAnaObserver}/>
             <section>
                 {sectionFaq()}
