@@ -30,7 +30,7 @@ export default function BirdThanksPage() {
     return (
 
         <div className={"py-8 " + cssBird.bgDark}>
-            <ThanksPopup openSignal={thanksPopupSignal}></ThanksPopup>
+            <ThanksPopup popupColor="bg-yellow-500" openSignal={thanksPopupSignal}></ThanksPopup>
             <CenterMaxWidth minXPad={8}>
                 <div className="flex w-full justify-center text-center">
                     <div>
