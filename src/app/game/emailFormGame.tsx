@@ -56,7 +56,7 @@ export default function EmailFormGame(props: Props) {
                     />
 
                     <MyButton handle={handleSubmit} disabled={buttonDisabled}>
-                        Join Waitlist___
+                        Join Waitlist
                         {/* <ArrowWithHover /> */}
                     </MyButton>
                 </div>

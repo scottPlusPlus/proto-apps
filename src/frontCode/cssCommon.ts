@@ -17,8 +17,8 @@ export type CssPropsCommon = {
 }
 
 export type ButtonProps = {
-    disabled:boolean,
     handle: () => void;
+    disabled?:boolean,
     children?: ReactNode;
   }
   

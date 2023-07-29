@@ -12,125 +12,62 @@ import FadeUp from "@/src/agnostic/components/FadeUp"
 import EmailFormGame from "./emailFormGame"
 import { Signal } from "@/src/agnostic/utils/Signal"
 import NamedObserver from "@/src/agnostic/components/NamedObserver"
-import { pointsArrayToPathString } from "@/src/agnostic/utils/svgUtils"
 import { urlWithRef, submitAnalytics, submitEmail } from "@/src/frontCode/dataUtils"
 import { useEffect } from "react"
 import ParticleButton from "./ParticleButton"
-import css from "styled-jsx/css"
+import ButtonStandard from "@/src/agnostic/components/ButtonStandard"
+import ButtonGlow from "./ButtonGlow"
 
 
 type Props = {
+    beta: boolean
 }
 
 const cssCommon = {
     padding: "p-8",
     actionButton: gameActionButton,
     textH1: "text-6xl font-bold mb-4",
-    textH2: "text-2xl font-bold mb-4",
-    textH3: "text-l",
+    textH2: "text-3xl font-bold",
+    textH3: "text-2xl font-bold",
     textBase: "text-xl whitespace-pre-wrap",
     textBaseBig: "text-xl whitespace-pre-wrap",
-    textLink: "text-orange-500 hover:text-green-500 cursor-pointer",
-    bgDark: "bg-gradient-to-r from-stone-900 via-pink-900 to-stone-900",
-    bgDark2: "bg-stone-700",  //"bg-gradient-to-b from-stone-800 to-stone-900",
-    bgDark3: "bg-stone-500",
-    textDark: "text-slate-800",
+    textBase2: "text-xl text-slate-300 whitespace-pre-wrap",
+    textLink: "text-blue-500 hover:text-blue-700 cursor-pointer",
+    // bgHero: "bg-gradient-to-t from-gray-800 via-pink-900 to-gray-800",
+   // bgHero: "bg-gradient-to-t from-violet-900 to-gray-800 to-50%",
+   bgHero: "bg-gradient-to-t from-cyan-600 via-violet-900 via-10% to-gray-800 to-60%",
+ //   bgHero: "bg-gradient-to-t from-cyan-600 via-violet-900 via-30% to-gray-800 to-60%",
+//    bgFooter: "bg-gradient-to-t from-pink-800 via-gray-800 via-10% via-gray-800 via-80% to-pink-800",
+    //bgFooter: "bg-gradient-to-b from-violet-900 to-violet-950",
+    bgFooter: "bg-gradient-to-b from-cyan-600 via-violet-900 via-15% to-violet-950",
+    // bgDark3: "bg-gradient-to-r from-indigo-900 to-indigo-950",
+
+    bgDark3:  "bg-indigo-950", //"bg-stone-700",  //"bg-gradient-to-b from-stone-800 to-stone-900",
+    bgDark2: "bg-gray-800",
+    textDark: "text-stone-800",
+    btnColorHover: "bg-violet-600",
+}
+
+const junk = {
+    btnColor: "bg-blue-500"
 }
 
 function gameActionButton(props: ButtonProps) {
-
-    function handleClick() {
-        props.handle();
-    }
-
-    const pointsArray1: [number, number][] = [
-        [0, 0],
-        [300, 0],
-        [300, 25],
-        [275, 25],
-        [275, 50],
-        [300, 50],
-        [300, 75],
-        [325, 75],
-        [325, 100],
-        [0, 100],
-    ];
-    const pointsArray2: [number, number][] = [
-        [325, 25],
-        [350, 25],
-        [350, 50],
-        [325, 50],
-    ];
-    pointsArray1.forEach(point => {
-        if (point[0] > 0) {
-            //point[0] -= 100;
-        }
-    });
-    pointsArray2.forEach(point => {
-        if (point[0] > 0) {
-            //point[0] -= 100;
-        }
-    });
-
-
-    const points = pointsArrayToPathString(pointsArray1);
-    const points2 = pointsArrayToPathString(pointsArray2);
-
-    const shapePath = `data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 100"%3E%3Cpath d="${points} ${points2}" fill="orange" /%3E%3C/svg%3E`;
-
     return (
-        <ParticleButton />
+        // <ButtonStandard cssOverrides="bg-cyan-500 hover:bg-cyan-700" onClick={props.handle} disabled={props.disabled}>{props.children}</ButtonStandard>
+        <ButtonStandard cssOverrides="bg-pink-500 hover:bg-pink-600" onClick={props.handle} disabled={props.disabled}>{props.children}</ButtonStandard>
     )
-
-    return (
-        <button
-            type="submit"
-            className="p-4 text-white text-xl font-bold"
-            style={{
-                background: `url('${shapePath}')`,
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "left",
-                backgroundSize: "100% 100%",
-                transition: "background-color 0.3s ease",
-            }}
-            disabled={props.disabled}
-            onClick={handleClick}
-            onMouseEnter={(e) => {
-                e.currentTarget.style.background = `url('${shapePath.replace('orange', 'green')}')`;
-                e.currentTarget.style.backgroundRepeat = 'no-repeat';
-                e.currentTarget.style.backgroundPosition = 'left';
-                e.currentTarget.style.backgroundSize = "100% 100%";
-            }}
-            onMouseLeave={(e) => {
-                e.currentTarget.style.background = `url('${shapePath}')`;
-                e.currentTarget.style.backgroundRepeat = 'no-repeat';
-                e.currentTarget.style.backgroundPosition = 'left';
-                e.currentTarget.style.backgroundSize = "100% 100%";
-            }}
-        >
-            {props.children}
-        </button>
-    );
-
     // return (
-    //     <span className="flex">
-    //     <button
-    //     type="submit"
-    //     className="relative btn-sm inline-flex items-center text-slate-100 bg-orange-500 hover:bg-green-500  shadow-sm text-xl rounded-none group"
-    //     disabled={props.disabled}
-    //     onClick={handleClick}
-    //   >
-    //     {props.children}
-    //   </button>
-    //     <div>
-    //     <span className="-py-2  w-12 grid grid-cols-2">
-    //             <span className="h-6 w-6 bg-green-500 block"></span>
-    //             <span className="h-6 w-6 bg-white block "></span>
-    //             <span className="h-6 w-6 bg-white block "></span>
-    //             <span className="h-6 w-6 bg-green-500 block"></span>
-    //             </span> 
+    //     <ButtonGlow handle={props.handle}>{props.children}</ButtonGlow>
+    // )
+    // return (
+    //     <div className="relative">
+    //         <div className="absolute -inset-1 rounded-lg bg-white opacity-75 blur"></div>
+    //         <button className="relative rounded-lg bg-pink-500 hover:bg-pink-200 px-7 py-4 text-white" onClick={props.handle}>{props.children}</button>
     //     </div>
-    //    </span>
+    // )
+    // return (
+    //     <ParticleButton />
     // )
 }
 
@@ -162,7 +99,7 @@ export function PageGameClient(props: Props) {
     // const cssTextAlignment = "flex justify-center lg:justify-start";
     const cssTextAlignment = "flex justify-start";
 
-    function GoButton() {
+    function ActionLine() {
         return (
             <div>
                 <EmailFormGame onSubmitEmail={handleSubmitEmail} cssCommon={cssCommon}></EmailFormGame>
@@ -173,21 +110,21 @@ export function PageGameClient(props: Props) {
     function sectionHero() {
         return (
             <LayoutImageRightOrBtm imageSrc={ImgGameHero.src} imageAlt="flock of tweeting birds">
-                <div className={"flex text-white justify-center " + cssCommon.bgDark}>
+                <div className={"flex text-white justify-center " + cssCommon.bgHero}>
                     <div className="mt-auto mb-auto">
                         <div className="ml-auto mr-auto">
                             <div className="py-16 px-16">
 
                                 <div className={cssTextAlignment}>
                                     <h1 className="h1 text-white mb-6">
-                                        the NEXT LEVEL of Gamedev Community
+                                        the <span className="bg-gradient-to-b from-white to-pink-500 bg-clip-text text-transparent">NEXT LEVEL</span> of<br></br>Gamedev Community
                                     </h1>
                                 </div>
                                 <div className={`${cssTextAlignment} ${cssCommon.textBaseBig}`}>
-                                    the best place for indie creators to connect with gamers and each other
+                                    the BEST place for indie creators to connect with gamers and each other
                                 </div>
                                 <div className={cssTextAlignment + " pt-8"}>
-                                    {GoButton()}
+                                    {ActionLine()}
                                 </div>
 
                             </div>
@@ -198,20 +135,7 @@ export function PageGameClient(props: Props) {
         )
     }
 
-    function featureList() {
-        return (
-            <FadeUp>
-                <p className={`${cssCommon.textH2} text-white`}>Features</p>
-                <ul className={"list-disc whitespace-pre-wrap " + cssCommon.textBase + " text-white"}>
-                    {/* <ul className="space-y-2"> */}
-                    <li>Free shareable page to post updates about your game</li>
-                    <li>Post everything from your elevator pitch, concept art, to playable demos</li>
-                    <li>Searchable portfolios of indie devs looking to collaborate</li>
-                    <li>Players earn rewards for giving useful feedback about your game</li>
-                </ul>
-            </FadeUp>
-        )
-    }
+
 
     function sectionFeatures() {
         return (
@@ -229,14 +153,29 @@ export function PageGameClient(props: Props) {
         )
     }
 
+    function featureList() {
+        return (
+            <FadeUp>
+                <p className={`${cssCommon.textH2} text-white mb-2`}>Features</p>
+                <ul className={"list-disc whitespace-pre-wrap " + cssCommon.textBase + " text-white"}>
+                    {/* <ul className="space-y-2"> */}
+                    <li>Free, shareable page to post updates about your game</li>
+                    <li>Post everything from your elevator pitch, concept art, to playable demos</li>
+                    <li>Searchable portfolios of indie devs looking to collaborate</li>
+                    <li>Players earn rewards for giving useful feedback about your game</li>
+                </ul>
+            </FadeUp>
+        )
+    }
+
     function sectionFaq() {
         return (
-            <div className={cssCommon.bgDark2 + " text-white"}>
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-4 ">
-                    <div className="pb-12 md:pb-20">
+            <div className={cssCommon.bgDark2 + " text-white py-16 px-16"}>
+                <div className="max-w-6xl mx-auto pt-4 ">
+                    
                         {/* Section header */}
-                        <div className="pb-12" data-aos="fade-up" data-aos-delay="200">
-                            <h2 className="h2">FAQs</h2>
+                        <div className="pb-8" data-aos="fade-up" data-aos-delay="200">
+                            <h2 className={cssCommon.textH2}>FAQs</h2>
                         </div>
 
                         {/* Columns */}
@@ -246,24 +185,23 @@ export function PageGameClient(props: Props) {
                                 {/* Item */}
                                 <FaqCard title="What is This?">
                                     <>
-                                        BirdSong is a third-party tool helping you be more effective and efficient connecting with people on Twitter.
-                                        Connect your Twitter Lists, and our AI will find the tweets most worth your response.
-                                        You can configure to send you a daily email with the most important tweets, or just visit our page to see your currently highlighted Tweets.
+                                        We’re building a platform where indie creators can post about their games-in-progress (long before you have a playable demo) and can connect with passionate players to get feedback and include them in the creation process.
+                                        It's exact shape will continue to evolve and be subject to feature creep :)
                                     </>
                                 </FaqCard>
 
                                 {/* Item */}
-                                <FaqCard title="What Types of Tweets do you Highlight?">
+                                <FaqCard title="When will you launch?">
                                     <>
-                                        We specifically look for tweets that invite a response, or are talking about topics you can configure.
-                                        We've learned the best way to build community is to engage with conversations that are already happening, and Bird Song helps you find those conversations.
+                                    We’re targeting the end of 2023.  We’ll see {"¯\\_(ツ)_/¯"}
                                     </>
                                 </FaqCard>
 
                                 {/* Item */}
-                                <FaqCard title="What about Mastadon?  Threads?">
+                                <FaqCard title="Is my email safe? Is it secret?">
                                     <>
-                                        We're focused now on delivering a delightful experience on Twitter, but are definitely looking to grow to other platforms.
+                                        All you are signing up for now is the waitlist -- 
+                                        We will ONLY use your email to let you know when the platform is ready to launch -- If you want to hear more from us as the platform evolves please follow us on <a className={cssCommon.textLink} href="https://twitter.com/ScottPlusPlus" target="_blank">twitter / x / whatever</a>
                                     </>
                                 </FaqCard>
                             </div>
@@ -271,25 +209,23 @@ export function PageGameClient(props: Props) {
                             {/* Column */}
                             <div className="w-full md:w-1/2 space-y-8">
                                 {/* Item */}
-                                <FaqCard title="Why Do You Need My Email?">
+                                <FaqCard title="Can I help?">
                                     <>
-                                        Joining the Waitlist ensures you are notified as soon as we launch.
-                                        We will only email you to let you know that BirdSong is ready.
-                                        We will not sell or share your information with anyone else, or use it for any other purpose.
+                                        We want this to be awesome for YOU!  If you have ideas of what would make the ideal indie game dev platform, we want to hear from you!  If you want to help with code or art assets, we want to hear from you! 
                                     </>
                                 </FaqCard>
 
                                 {/* Item */}
                                 <FaqCard title="I have more questions!">
                                     <>
-                                        Please <a className="text-blue-500 cursor-pointer" href="https://twitter.com/ScottPlusPlus">get in touch</a>, we'd love to discuss.
+                                        Please <a className={cssCommon.textLink} href="https://twitter.com/ScottPlusPlus" target="_blank">get in touch</a>
                                     </>
                                 </FaqCard>
 
                             </div>
                         </div>
                     </div>
-                </div>
+
             </div>
         );
     }
@@ -301,12 +237,13 @@ export function PageGameClient(props: Props) {
             </section>
 
             <section>
-                <div className={`py-8 pb-12 ${cssCommon.bgDark2}`}>
-                    <CenterMaxWidth minXPad={8}>
+                <div className={`py-16 ${cssCommon.bgDark2}`}>
+                    <CenterMaxWidth minXPad={16}>
                         <FadeUp>
-                            <p className={`${cssCommon.textH2} text-white`}>
-                                You bring your passion and talent to the anvil of creation. You weave art, code, music, and blood to build new worlds where we can play, explore, and experience things we’ve never imagined before.
-                                <b><ScrollTextComponent text=" You do enough.  Let us help make connecting players to your game a few bits easier" bufferTop={-400} bufferBottom={-250} colorBefore="text-white" colorAfter="text-pink-500"></ScrollTextComponent></b>.
+                            <p className={`${cssCommon.textH3} text-white`}>
+                                You bring your passion and talent to the anvil of creation -- 
+                                You weave art, code, music, and blood to build new worlds where we can play, explore, and experience things we’ve never imagined before -- 
+                                <b><ScrollTextComponent text=" You do enough.  Let us help make connecting players to your game a few bits easier" bufferTop={-400} bufferBottom={-250} colorBefore="text-white" colorAfter="text-pink-500"></ScrollTextComponent></b>
                             </p>
                         </FadeUp>
                     </CenterMaxWidth>
@@ -323,10 +260,10 @@ export function PageGameClient(props: Props) {
                 {sectionFaq()}
             </section>
             <div className='py-8'></div>
-            <FloatingFooter showBelowPageYOffset={400} cssOverride={cssCommon.bgDark} >
+            <FloatingFooter showBelowPageYOffset={400} cssOverride={cssCommon.bgFooter} >
                 <div className="w-full p-4 flex justify-center">
-                    <div className="max-w-xs">
-                        {GoButton()}
+                    <div className="max-w-s">
+                        {ActionLine()}
                     </div>
                 </div>
             </FloatingFooter>
@@ -339,8 +276,8 @@ function FaqCard(props: { title: string, children: React.ReactNode }) {
     return (
         <FadeUp>
             <div className="space-y-2">
-                <h4 className="text-xl font-bold">{props.title}</h4>
-                <p className="text-slate-500">{props.children}</p>
+                <h4 className={cssCommon.textH3}>{props.title}</h4>
+                <p className={cssCommon.textBase2}>{props.children}</p>
             </div>
         </FadeUp>
     )

@@ -16,6 +16,6 @@ import { PageGameClient } from './pageGameClient';
 
 export default function Home() {
     return (
-        <PageGameClient></PageGameClient>
+        <PageGameClient beta={false}></PageGameClient>
     )
 }
