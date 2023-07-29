@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { Signal } from "../utils/Signal";
 
 type ThanksPopupProps = {
-    openSignal: Signal
+    openSignal: Signal,
+    popupColor:string,
 }
 
 export function ThanksPopup(props: ThanksPopupProps) {
@@ -37,7 +38,7 @@ export function ThanksPopup(props: ThanksPopupProps) {
         <>
             <div className="fixed inset-0 bg-black bg-opacity-50 z-1000"></div>
             <div className="fixed inset-x-0 top-10 flex items-center justify-center" data-aos="fade-up" data-aos-delay="100">
-                <div className="flex m-4 p-4 bg-amber-600 text-white rounded-lg shadow-lg z-1500">
+                <div className={`flex m-4 p-4 ${props.popupColor} text-white rounded-lg shadow-lg z-1500`}>
                     <p>Thanks!</p>
                     <button
                         onClick={doClose}

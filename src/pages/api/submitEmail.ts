@@ -1,3 +1,4 @@
+import { getIpAddressFromHeadersDict } from "@/src/agnostic/utils/ipUtils";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
@@ -5,11 +6,13 @@ export default async function handler(
     res: NextApiResponse
 ) {
     console.log(`handle api/submitEmail`);
-
+    const hopefullyIp = getIpAddressFromHeadersDict(req.headers);
+    
     const data = {
-        email: req.body.email,
-        domain: req.body.domain,
+        ip: hopefullyIp,
+        event: req.body.event,
         data: req.body.data,
+        domain: req.body.domain,
     };
     const endpoint = "http://24.199.102.59/api/submitEmail";
 

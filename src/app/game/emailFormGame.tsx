@@ -20,8 +20,6 @@ export default function EmailFormGame(props: Props) {
 
     const handleSubmit = () => {
         if (validateEmail(email)) {
-            // Perform your desired action with the valid email
-            console.log('Email submitted:', email);
             if (props.onSubmitEmail) {
                 props.onSubmitEmail(email);
             } else {

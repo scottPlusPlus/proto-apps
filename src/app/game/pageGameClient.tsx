@@ -17,6 +17,7 @@ import { useEffect } from "react"
 import ParticleButton from "./ParticleButton"
 import ButtonStandard from "@/src/agnostic/components/ButtonStandard"
 import ButtonGlow from "./ButtonGlow"
+import { ThanksPopup } from "@/src/agnostic/components/ThanksPopup"
 
 
 type Props = {
@@ -26,13 +27,13 @@ type Props = {
 const cssCommon = {
     padding: "p-8",
     actionButton: gameActionButton,
-    textH1: "text-6xl font-bold mb-4",
-    textH2: "text-3xl font-bold",
-    textH3: "text-2xl font-bold",
-    textBase: "text-xl whitespace-pre-wrap",
-    textBaseBig: "text-xl whitespace-pre-wrap",
-    textBase2: "text-xl text-slate-300 whitespace-pre-wrap",
-    textLink: "text-blue-500 hover:text-blue-700 cursor-pointer",
+    textH1: "text-6xl font-bold mb-4 font-sans",
+    textH2: "text-3xl font-bold font-sans",
+    textH3: "text-2xl font-bold font-sans",
+    textBase: "text-xl whitespace-pre-wrap semi-bold font-semibold",
+    textBaseBig: "text-xl whitespace-pre-wrap font-sans",
+    textBase2: "text-xl text-slate-300 whitespace-pre-wrap font-sans",
+    textLink: "text-blue-500 hover:text-blue-700 cursor-pointer font-sans",
     // bgHero: "bg-gradient-to-t from-gray-800 via-pink-900 to-gray-800",
    // bgHero: "bg-gradient-to-t from-violet-900 to-gray-800 to-50%",
    bgHero: "bg-gradient-to-t from-cyan-600 via-violet-900 via-10% to-gray-800 to-60%",
@@ -79,7 +80,7 @@ export function PageGameClient(props: Props) {
     var anaData = "";
     useEffect(() => {
         anaData = urlWithRef(document);
-        submitAnalytics("rock-visit-top", anaData, "game",);
+        handleAnaObserver("game-visit-top");
     }, []);
 
     function handleSubmitEmail(email: string): void {
@@ -90,9 +91,6 @@ export function PageGameClient(props: Props) {
     function handleAnaObserver(name: string) {
         submitAnalytics(name, anaData, "game");
     }
-
-
-
 
 
     const bgNeutral = "bg-neutral-200";
@@ -116,7 +114,7 @@ export function PageGameClient(props: Props) {
                             <div className="py-16 px-16">
 
                                 <div className={cssTextAlignment}>
-                                    <h1 className="h1 text-white mb-6">
+                                    <h1 className={cssCommon.textH1 + "mb-6"}>
                                         the <span className="bg-gradient-to-b from-white to-pink-500 bg-clip-text text-transparent">NEXT LEVEL</span> of<br></br>Gamedev Community
                                     </h1>
                                 </div>
@@ -236,6 +234,8 @@ export function PageGameClient(props: Props) {
                 {sectionHero()}
             </section>
 
+            <ThanksPopup popupColor="bg-pink-500"  openSignal={thanksPopupSignal}></ThanksPopup>
+
             <section>
                 <div className={`py-16 ${cssCommon.bgDark2}`}>
                     <CenterMaxWidth minXPad={16}>
@@ -250,15 +250,18 @@ export function PageGameClient(props: Props) {
                 </div>
             </section>
 
+
             <section>
                 {sectionFeatures()}
             </section>
 
 
-            <NamedObserver name='bird-visit-faq' onObserve={handleAnaObserver} />
+            <NamedObserver name='game-visit-faq' onObserve={handleAnaObserver} />
             <section>
                 {sectionFaq()}
             </section>
+
+
             <div className='py-8'></div>
             <FloatingFooter showBelowPageYOffset={400} cssOverride={cssCommon.bgFooter} >
                 <div className="w-full p-4 flex justify-center">

@@ -69,7 +69,7 @@ export default function RockPageClient() {
                     <p className={cssCommon.textBaseBig}>Be the first to hear when your favorite bands rock your town.  Just choose which artists you care about and how loud you want us to be.  We'll handle the rest.</p>
                 )}
             />
-            <ThanksPopup openSignal={thanksPopupSignal}></ThanksPopup>
+            <ThanksPopup popupColor="bg-amber-600"  openSignal={thanksPopupSignal}></ThanksPopup>
             <section>
                 <div className={bgNeutral}>
                     <CenterMaxWidth minXPad={8}>

@@ -13,6 +13,7 @@ export default async function handler(
                 ip: hopefullyIp,
                 event: req.body.event,
                 data: req.body.data,
+                domain: req.body.domain,
             },
         ],
     };

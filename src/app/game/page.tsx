@@ -1,15 +1,15 @@
-import Ico from '@/public/images/bird/bird.ico';
-import OgImage from '@/public/images/bird/bird_song_soc.jpg';
+import Ico from '@/public/images/game/g_ico.ico';
+import OgImage from '@/public/images/game/game_soc.png';
 
 export const metadata = {
-    title: 'GlitchBack',
-    description: 'Scotts Proto Apps',
+    title: 'Indie Dev ++',
+    description: 'the NEXT LEVEL of indie gamedev community',
     openGraph: {
         images: [{
             url: OgImage.src,
         }],
     },
-    icons: { icon: Ico.src }
+    icons: { icon: Ico.src },
 }
 
 import { PageGameClient } from './pageGameClient';

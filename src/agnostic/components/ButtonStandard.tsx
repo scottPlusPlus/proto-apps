@@ -15,9 +15,6 @@ export default function ButtonStandard(props: Props) {
         myCss = overideTailwindCssClasses(myCss, props.cssOverrides);
     }
 
-
-    console.log("btn cls: " + myCss);
-
     return (
         <button
             className={myCss}

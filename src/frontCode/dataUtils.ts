@@ -13,6 +13,7 @@ export async function submitEmail(
     domain: string
 ): Promise<void> {
     if (skipSendingData()) {
+        console.log("skipped sending email: " + email);
         return;
     }
     const bodyData = {
@@ -30,6 +31,7 @@ export async function submitAnalytics(
     domain: string
 ): Promise<void> {
     if (skipSendingData()) {
+        console.log("skipped sending analytics: " + event);
         return;
     }
     const bodyData = {
@@ -59,7 +61,6 @@ function skipSendingData() {
     const local = window.location.href.includes("localhost");
     if (local) {
         if (!firstLocalWarning) {
-            console.log("WARN: skipping sending data since we're on localhost");
             firstLocalWarning = true;
         }
     }

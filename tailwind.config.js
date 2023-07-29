@@ -9,7 +9,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        aspekta: ['var(--font-aspekta)', 'sans-serif'],
+        // aspekta: ['var(--font-aspekta)', 'sans-serif'],
+        sans: ['sans-serif'],
       },
       fontSize: {
         xs: ['0.75rem', { lineHeight: '1.5' }],
