@@ -30,8 +30,12 @@ export default async function handler(
     };
     const r = await fetch(endpoint, options);
     console.log("submit analytics status = " + r.status);
-    if (r.status != 200) {
-        const msg = await r.text();
-        console.log(msg);
+    if (r.status != 200){
+        try {
+            const t = await r.text();
+            console.log("jarvis Err: " + t);
+        } catch (_){
+            console.log("jarvis Err: ??");
+        }
     }
 }

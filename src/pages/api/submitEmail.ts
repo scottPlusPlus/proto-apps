@@ -9,10 +9,10 @@ export default async function handler(
     const hopefullyIp = getIpAddressFromHeadersDict(req.headers);
     
     const data = {
-        ip: hopefullyIp,
-        event: req.body.event,
         data: req.body.data,
         domain: req.body.domain,
+        email: req.body.email,
+        ip: hopefullyIp,
     };
     const endpoint = "http://24.199.102.59/api/submitEmail";
 
@@ -30,6 +30,14 @@ export default async function handler(
     console.log("sending email");
     const r = await fetch(endpoint, options);
     console.log("response status: = " + r.status);
+    if (r.status != 200){
+        try {
+            const t = await r.text();
+            console.log("jarvis Err: " + t);
+        } catch (_){
+            console.log("jarvis Err: ??");
+        }
+    }
     res.status(200).json("ok");
     return;
 }
